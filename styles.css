@@ -8,6 +8,7 @@ body {
     background-color: #272727;
     color: #ffffff;
     font-family: monospace;
+    overflow: hidden;
 }
 
 #game-container {
@@ -184,9 +185,59 @@ body {
     border-color: #043737;
 }
 
-#created-by {
-    margin-top: 20px;
-    text-align: center;
-    color: #ffffff;
-    font-size: 18px;
+#creator-container {
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    background-color: rgba(15, 15, 15, 0.399);
+    color: rgba(255, 255, 255, 0.512);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 7px;
+}
+
+#police-lights {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(500px); /* Ajusta el valor según la cantidad de desenfoque deseada */
+    z-index: -1;
+}
+
+
+.police-light {
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    box-shadow: 0 0 1000px 5px rgba(255, 0, 0, 0.5); /* Sombra roja para simular la luz */
+    animation: police-lights 1s infinite alternate; /* Animación intermitente */
+}
+
+.red {
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 0, 0, 0.5); /* Luz roja semitransparente */
+}
+
+.blue {
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0, 0, 255, 0.5); /* Luz azul semitransparente */
+}
+
+@keyframes police-lights {
+    0% {
+        opacity: 0.5; /* Luz parcialmente visible */
+    }
+    50% {
+        opacity: 1; /* Luz completamente visible */
+    }
+    100% {
+        opacity: 0.5; /* Luz parcialmente visible */
+    }
 }
