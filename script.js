@@ -6,6 +6,7 @@ const letters = "qwerasd";
 let userInput = "";
 let timer;
 let keyIsPressed = false;
+let gameStarted = false; // Añadir una variable para controlar si el juego ha comenzado
 
 function setupGame() {
     resetGame(); // Clear the previous game state
@@ -38,6 +39,8 @@ function startGame() {
     }, 100);
 
     document.addEventListener('keydown', handleKeyDown);
+
+    gameStarted = true; // Establecer la bandera de que el juego ha comenzado
 }
 
 function generateLetters() {
@@ -75,7 +78,16 @@ function endGame(success) {
     displayOutcome(success);
     document.getElementById('start-button').disabled = false;
     document.removeEventListener('keydown', handleKeyDown);
+    gameStarted = false; // Restablecer la bandera de que el juego ha comenzado
+
+    // Recargar la página si el juego ha fallado
+    if (!success) {
+        setTimeout(() => {
+            location.reload();
+        }, 3000); // Recargar la página después de 3 segundos (3000 milisegundos)
+    }
 }
+
 
 function resetGame() {
     clearInterval(timer); // Clear the timer
@@ -86,6 +98,17 @@ function resetGame() {
 
 function handleKeyDown(event) {
     const pressedKey = event.key.toLowerCase();
+
+    // Si el juego no ha comenzado, verificar si la tecla 'E' es presionada para iniciar el juego
+    if (!gameStarted && pressedKey === 'e') {
+        startGame();
+        return;
+    }
+
+    // Check if the game has started before processing key input
+    if (!gameStarted) {
+        return;
+    }
 
     // Check if the key is already pressed
     if (keyIsPressed || !letters.includes(pressedKey)) {
@@ -118,6 +141,7 @@ function checkInput() {
         displayOutcome(true);
         document.getElementById('start-button').disabled = false;
         document.removeEventListener('keydown', handleKeyDown);
+        gameStarted = false; // Restablecer la bandera de que el juego ha comenzado
     }
 }
 
@@ -142,13 +166,13 @@ function displayHacking() {
 function changeTitle() {
     // Verificar si la página está visible
     if (document.visibilityState === 'visible') {
-      // Cambiar el título de la página
-      document.title = "NoPixel-ChopShop";
+        // Cambiar el título de la página
+        document.title = "NoPixel-ChopShop";
     } else {
-      // Cambiar el título de la página cuando no es visible
-      document.title = "¡Te extrañamos!";
+        // Cambiar el título de la página cuando no es visible
+        document.title = "¡Te extrañamos!";
     }
-  }
+}
 
-  // Llamar a la función cuando el estado de visibilidad cambie
-  document.addEventListener("visibilitychange", changeTitle);
+// Llamar a la función cuando el estado de visibilidad cambie
+document.addEventListener("visibilitychange", changeTitle);
