@@ -136,3 +136,53 @@ function displayHacking() {
     document.getElementById('outcome').style.color = '#FFFFFF';
     document.getElementById('start-button').removeEventListener('click', startGame);
 }
+
+
+// cargar usuarios a la pag
+
+// Variable para almacenar el contador de usuarios
+let connectedUsers = 0;
+
+// Función para actualizar el contador en la interfaz de usuario
+function updateCounter() {
+  document.getElementById('userCount').innerText = connectedUsers;
+}
+
+// Función para aumentar el contador cuando un usuario ingresa a la página
+function userLoggedIn() {
+  connectedUsers++;
+  updateCounter();
+}
+
+// Función para disminuir el contador cuando un usuario sale de la página
+function userLoggedOut() {
+  connectedUsers--;
+  updateCounter();
+}
+
+// Llamar a userLoggedIn() cuando se carga la página
+window.onload = function() {
+  userLoggedIn();
+};
+
+// Llamar a userLoggedOut() cuando el usuario sale de la página
+window.onbeforeunload = function() {
+  userLoggedOut();
+};
+
+// dinamic tittle 
+
+// Función para cambiar el título
+function changeTitle() {
+    // Verificar si la página está visible
+    if (document.visibilityState === 'visible') {
+      // Cambiar el título de la página
+      document.title = "NoPixel-ChopShop";
+    } else {
+      // Cambiar el título de la página cuando no es visible
+      document.title = "¡Te extrañamos!";
+    }
+  }
+
+  // Llamar a la función cuando el estado de visibilidad cambie
+  document.addEventListener("visibilitychange", changeTitle);
