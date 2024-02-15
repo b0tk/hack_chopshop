@@ -38,7 +38,6 @@ function startGame() {
     }, 100);
 
     document.addEventListener('keydown', handleKeyDown);
-    // document.getElementById('police-lights').style.animation = 'none';
 }
 
 function generateLetters() {
