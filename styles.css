@@ -196,17 +196,6 @@ body {
     font-size: 7px;
 }
 
-#conectados-container {
-    position: absolute;
-    top: 26px;
-    right: 3px;
-    background-color: rgba(15, 15, 15, 0.399);
-    color: rgba(255, 255, 255, 0.512);
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 7px;
-}
-
 #police-lights {
     content: "";
     position: absolute;
