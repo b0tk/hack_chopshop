@@ -196,7 +196,7 @@ body {
     font-size: 7px;
 }
 
-#police-lights {
+/* #police-lights {
     content: "";
     position: absolute;
     top: 0;
@@ -240,4 +240,4 @@ body {
     100% {
         opacity: 0.5; /* Luz parcialmente visible */
     }
-}
+} */
