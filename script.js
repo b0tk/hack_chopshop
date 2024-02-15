@@ -79,13 +79,6 @@ function endGame(success) {
     document.getElementById('start-button').disabled = false;
     document.removeEventListener('keydown', handleKeyDown);
     gameStarted = false; // Restablecer la bandera de que el juego ha comenzado
-
-    // Recargar la página si el juego ha fallado
-    if (!success) {
-        setTimeout(() => {
-            location.reload();
-        }, 3000); // Recargar la página después de 3 segundos (3000 milisegundos)
-    }
 }
 
 
@@ -150,8 +143,18 @@ function displayOutcome(success) {
     outcomeElement.innerText = success ? 'Logrado!' : 'Fallido!';
     outcomeElement.style.color = success ? '#0DE6B9' : '#AA6A6C';
 
+    if (!success) {
+        setTimeout(() => {
+            location.reload();
+        }, 30); // Recargar la página después de 3 segundos (3000 milisegundos)
+    } else {
+        setTimeout(() => {
+            location.reload();
+        }, 30); // Recargar la página después de 3 segundos (3000 milisegundos)
+    }
+
     // After displaying the outcome, reattach the 'click' event listener to the start button
-    document.getElementById('start-button').addEventListener('click', startGame);
+    // document.getElementById('start-button').addEventListener('click', startGame);
 }
 
 function displayHacking() {
